@@ -31,6 +31,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+                        <a class="navbar-brand" href = "/home/konta">Zarządzanie kontami</a>
+                        <a class="navbar-brand" href = "/home/korespondencja">Korespondencja uwag</a>
+                        <a class="navbar-brand" href = "/home/rezerwacje">Rezerwacje</a>
+                        <a class="navbar-brand" href = "/home/pracownicy">Lista pracowników</a>
+                        <a class="navbar-brand" href = "/home/raporty">Raporty</a>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -55,6 +61,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

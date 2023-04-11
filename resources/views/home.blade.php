@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Jesteś zalogowany, wybierz zakładkę w górnym panelu !') }}
                 </div>
             </div>
         </div>
