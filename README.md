@@ -4,9 +4,9 @@ Before first use:
 3. Install laravel
 4. Install npm
 5. Copy .env.example as .env
-6. In .env change mysql to sqlite and add the path to your database file (in database folder)
+6. In .env change mysql to sqlite and add the path to your database.sqlite file (in database folder) to db_database. If the file doesn't exist, create a new file.
 7. In php.ini (from your php folder) uncomment lines with sqlite, fileinfo, openssl. If you don't have a php.ini file change php.ini-developmnet to php.ini
-8. Add database form the database file
+8. Add database from the database file (tab on the right, Databases)
 9. Start server by php artisan serve then php artisan migrate:fresh --seed and npm run dev
 10. If needed use npm install
 
