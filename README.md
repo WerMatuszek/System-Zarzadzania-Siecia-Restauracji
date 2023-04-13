@@ -3,12 +3,13 @@ Before first use:
 2. Install phpstorm
 3. Install laravel
 4. Install npm
-5. Copy .env.example as .env
-6. In .env change mysql to sqlite and add the path to your database.sqlite file (in database folder) to db_database. If the file doesn't exist, create a new file.
-7. In php.ini (from your php folder) uncomment lines with sqlite, fileinfo, openssl. If you don't have a php.ini file change php.ini-developmnet to php.ini
-8. Add database from the database file (tab on the right, Databases)
-9. Start server by php artisan serve then php artisan migrate:fresh --seed and npm run dev
-10. If needed use npm install
+5. Install composer
+6. Copy .env.example as .env
+7. In .env change mysql to sqlite and add the path to your database.sqlite file (in database folder) to db_database. If the file doesn't exist, create a new file.
+8. In php.ini (from your php folder) uncomment lines with sqlite, fileinfo, openssl. If you don't have a php.ini file change php.ini-developmnet to php.ini
+9. Add database from the database file (tab on the right, Databases)
+10. Start server by php artisan serve then php artisan migrate:fresh --seed and npm run dev
+11. If needed use npm install
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
