@@ -55,5 +55,18 @@ class DatabaseSeeder extends Seeder
                 'role_id' => 2
             ],
         ]);
+
+        DB::table('restauracjas')->insert([
+            [
+                'name' => "Mamma Mia!"
+            ]
+        ]);
+
+        DB::table('restauracja_user')->insert([
+            [
+                'user_id' => 12,
+                'restauracja_id' => 1
+            ]
+        ]);
     }
 }
