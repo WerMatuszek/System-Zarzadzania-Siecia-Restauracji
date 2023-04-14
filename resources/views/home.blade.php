@@ -14,7 +14,14 @@
                         </div>
                     @endif
 
-                    {{ __('Jesteś zalogowany, wybierz zakładkę w górnym panelu !') }}
+                        @if (auth()->check() && auth()->user()->roles->contains('role_name', 'szef'))
+                            {{ __('Witaj szefie!') }}
+                        @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'kierownik'))
+                            {{ __('Witaj kierowniku!') }}
+                        @else
+                            {{ __('Niezidentyfikowana rola!') }}
+                        @endif
+
                 </div>
             </div>
         </div>

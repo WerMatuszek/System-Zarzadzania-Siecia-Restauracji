@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,13 +13,47 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::factory(10)->create();
+         User::factory(10)->create();
 
-         \App\Models\User::factory()->create([
-             'name' => 'Admin',
-             'last_name'=>"Admin",
-             'email' => 'admin@example.com',
-             'password' => bcrypt('admin')
+         User::factory()->create([
+             'name' => 'Szef',
+             'last_name'=>"Szef",
+             'email' => 'szef@example.com',
+             'password' => bcrypt('szef')
          ]);
+
+        User::factory()->create([
+            'name' => 'Kierownik',
+            'last_name'=>"Kierownik",
+            'email' => 'kierownik@example.com',
+            'password' => bcrypt('kierownik')
+        ]);
+
+        User::factory()->create([
+            'name' => 'Obcy',
+            'last_name'=>"Obcy",
+            'email' => 'obcy@example.com',
+            'password' => bcrypt('obcy')
+        ]);
+
+        DB::table('roles')->insert([
+            [
+                'role_name' => 'szef'
+            ],
+            [
+                'role_name' => 'kierownik'
+            ]
+        ]);
+
+        DB::table('role_user')->insert([
+            [
+                'user_id' => 11,
+                'role_id' => 1
+            ],
+            [
+                'user_id' => 12,
+                'role_id' => 2
+            ],
+        ]);
     }
 }

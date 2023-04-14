@@ -20,24 +20,23 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('home') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    @if (auth()->check())
+                        <ul class="navbar-nav me-auto">
 
-                        <a class="navbar-brand" href = "/home/konta">Zarządzanie kontami</a>
-                        <a class="navbar-brand" href = "/home/korespondencja">Korespondencja uwag</a>
-                        <a class="navbar-brand" href = "/home/rezerwacje">Rezerwacje</a>
-                        <a class="navbar-brand" href = "/home/pracownicy">Lista pracowników</a>
-                        <a class="navbar-brand" href = "/home/raporty">Raporty</a>
+                            <a class="navbar-brand" href = "/home/konta">Zarządzanie kontami</a>
+                            <a class="navbar-brand" href = "/home/korespondencja">Korespondencja uwag</a>
+                            <a class="navbar-brand" href = "/home/rezerwacje">Rezerwacje</a>
+                            <a class="navbar-brand" href = "/home/pracownicy">Lista pracowników</a>
+                            @if(!auth()->user()->roles->contains('role_name', 'kierownik'))
+                                <a class="navbar-brand" href = "/home/raporty">Raporty</a>
+                            @endif
 
-                    </ul>
+                        </ul>
+                    @endif
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
