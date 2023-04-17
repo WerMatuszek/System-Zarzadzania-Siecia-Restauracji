@@ -27,17 +27,25 @@
                         <ul class="navbar-nav me-auto">
 
                             @if(!auth()->user()->roles->contains('role_name', 'pracownik'))
-                                <a class="navbar-brand" href = "/home/konta">Zarządzanie kontami</a>
-                                <a class="navbar-brand" href = "/home/rezerwacje">Rezerwacje</a>
-                                <a class="navbar-brand" href = "/home/pracownicy">Lista pracowników</a>
+                                @if(!auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                                    <a class="navbar-brand" href = "/home/konta">Zarządzanie kontami</a>
+                                    <a class="navbar-brand" href = "/home/rezerwacje">Rezerwacje</a>
+                                    <a class="navbar-brand" href = "/home/pracownicy">Lista pracowników</a>
+                                @endif
                             @endif
 
                                 <a class="navbar-brand" href = "/home/korespondencja">Korespondencja uwag</a>
 
                             @if(!auth()->user()->roles->contains('role_name', 'kierownik'))
                                 @if(!auth()->user()->roles->contains('role_name', 'pracownik'))
-                                    <a class="navbar-brand" href = "/home/raporty">Raporty</a>
+                                    @if(!auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                                        <a class="navbar-brand" href = "/home/raporty">Raporty</a>
+                                    @endif
                                 @endif
+                            @endif
+
+                            @if(auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                                <a class="navbar-brand" href = "/home/raporty">Raporty</a>
                             @endif
 
                                 <a class="navbar-brand" href = "/home/grafik">Grafik</a>
