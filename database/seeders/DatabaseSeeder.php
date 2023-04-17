@@ -30,6 +30,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
+            'name' => 'Pracownik',
+            'last_name'=>"Pracownik",
+            'email' => 'pracownik@example.com',
+            'password' => bcrypt('pracownik')
+        ]);
+
+        User::factory()->create([
             'name' => 'Obcy',
             'last_name'=>"Obcy",
             'email' => 'obcy@example.com',
@@ -42,6 +49,9 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'role_name' => 'kierownik'
+            ],
+            [
+                'role_name' => 'pracownik'
             ]
         ]);
 
@@ -53,6 +63,10 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => 12,
                 'role_id' => 2
+            ],
+            [
+                'user_id' => 13,
+                'role_id' => 3
             ],
         ]);
 

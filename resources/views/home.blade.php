@@ -18,6 +18,8 @@
                             {{ __('Witaj szefie!') }}
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'kierownik'))
                             @include('welcome.kierownik')
+                            @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'pracownik'))
+                                {{ __('Witaj pracowniku!') }}
                         @else
                             {{ __('Niezidentyfikowana rola!') }}
                         @endif

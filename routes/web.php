@@ -44,3 +44,6 @@ Auth::routes();
 Route::get('/home/pracownicy', [App\Http\Controllers\PracownicyController::class, 'index']);
 Auth::routes();
 Route::get('/home/raporty', [App\Http\Controllers\RaportyController::class, 'index']);
+Auth::routes();
+Route::get('/home/grafik', [App\Http\Controllers\GrafikController::class, 'index']);
+
