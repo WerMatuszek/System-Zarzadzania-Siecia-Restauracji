@@ -28,6 +28,7 @@ Route::get('/konta', [App\Http\Controllers\KontaController::class, 'index']);
 Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj');
 Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
 Route::post('/konta/dodajDoBazy', [KontaController::class, 'dodajDoBazy'])->name('konta.dodajDoBazy');
+Route::get('/konta/usunZBazy/{id}', [KontaController::class, 'usunZBazy'])->name('konta.usunZBazy');
 Auth::routes();
 Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
 Auth::routes();

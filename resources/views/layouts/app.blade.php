@@ -7,11 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Restauracje') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e6f454e6ac.js" crossorigin="anonymous"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -26,12 +27,17 @@
                 @if (auth()->check())
                     <ul class="navbar-nav me-auto">
 
-                        @if(!auth()->user()->roles->contains('role_name', 'pracownik') &&
-                            !auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                        @if(auth()->user()->roles->contains('role_name', 'szef') &&
+                            auth()->user()->roles->contains('role_name', 'kierownik'))
                             <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
-                            <a class="navbar-brand" href="../rezerwacje">Rezerwacje</a>
-                            <a class="navbar-brand" href="../pracownicy">Lista pracowników</a>
                         @endif
+
+                            @if(!auth()->user()->roles->contains('role_name', 'pracownik') &&
+                                !auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                                <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
+                                <a class="navbar-brand" href="../rezerwacje">Rezerwacje</a>
+                                <a class="navbar-brand" href="../pracownicy">Lista pracowników</a>
+                            @endif
 
                         <a class="navbar-brand" href="../korespondencja">Korespondencja uwag</a>
 

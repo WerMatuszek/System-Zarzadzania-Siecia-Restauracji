@@ -13,14 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         User::factory(10)->create();
-
-         User::factory()->create([
-             'name' => 'Szef',
-             'last_name'=>"Szef",
-             'email' => 'szef@example.com',
-             'password' => bcrypt('szef')
-         ]);
+        User::factory()->create([
+            'name' => 'Szef',
+            'last_name'=>"Szef",
+            'email' => 'szef@example.com',
+            'password' => bcrypt('szef')
+        ]);
 
         User::factory()->create([
             'name' => 'Kierownik',
@@ -66,19 +64,19 @@ class DatabaseSeeder extends Seeder
 
         DB::table('role_user')->insert([
             [
-                'user_id' => 11,
+                'user_id' => 1,
                 'role_id' => 1
             ],
             [
-                'user_id' => 12,
+                'user_id' => 2,
                 'role_id' => 2
             ],
             [
-                'user_id' => 13,
+                'user_id' => 3,
                 'role_id' => 3
             ],
             [
-                'user_id' => 14,
+                'user_id' => 4,
                 'role_id' => 4
             ]
         ]);
@@ -91,7 +89,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('restauracja_user')->insert([
             [
-                'user_id' => 12,
+                'user_id' => 2,
                 'restauracja_id' => 1
             ]
         ]);

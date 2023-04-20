@@ -37,25 +37,42 @@ class KontaController extends Controller
 
     public function dodajDoBazy(Request $request)
     {
+        $userExist = User::where('email', $request->input('email'))->first();
+
+        if ($userExist) {
+            return redirect('/konta/dodaj')->with('status', 'Konto o tym adresie email już istnieje.');
+        }
+
         $user = new User;
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        $password = Str::random(8);
-        $user->password = bcrypt($password);
+        $user->password = bcrypt($request->input('password'));
         $user->save();
-        $user_id = $user->id;
 
         $role = Role::where('role_name', $request->input('role'))->first();
 
         $user->roles()->attach($role->id);
 
-        return redirect('konta')->with('status', 'Konto pracownika zostało pomyślnie utworzone.');
-        //return redirect('konta');
+        return redirect('/konta/dodaj')->with('status', 'Konto pracownika zostało pomyślnie utworzone.');
     }
 
     public function usun()
     {
-        return view('konta.usun');
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        return view('konta.usun')->with('users', $users);
+    }
+
+    public function usunZBazy(int $id)
+    {
+        $user = User::find($id);
+        $user->delete();
+
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        return redirect('/konta/usun')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie usunięte.');
     }
 }
