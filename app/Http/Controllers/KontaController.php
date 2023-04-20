@@ -56,7 +56,23 @@ class KontaController extends Controller
 
     public function usun()
     {
-        $users = User::with('roles')->get();
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
         return view('konta.usun')->with('users', $users);
+    }
+
+    public function usunZBazy(int $id)
+    {
+        $message = "wrong answer";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+
+        $user = User::find($id);
+        $user->delete();
+
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        return redirect('/konta/usun')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie usunięte.');
     }
 }

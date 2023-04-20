@@ -34,7 +34,7 @@
                                             {{ $role->role_name }} <br>
                                         @endforeach
                                     </td>
-                                    <td><a><i class="fa-solid fa-xmark" style="color: #ff0000;"></i></a></td>
+                                    <td><a class="btn btn-danger" onclick="return confirm('Czy jesteś pewny, że chcesz usunąć pracownika?')" href="{{route('konta.usunZBazy', ['id' => $user->id])}}"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             @endforeach
                             </tbody>
