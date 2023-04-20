@@ -62,6 +62,12 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'role_name' => 'recepcjonistka'
+            ],
+            [
+                'role_name' => 'magazynier'
+            ],
+            [
+                'role_name' => 'ksiegowa'
             ]
         ]);
 

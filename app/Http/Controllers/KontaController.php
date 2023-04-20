@@ -23,16 +23,22 @@ class KontaController extends Controller
      */
     public function index()
     {
-        return view('konta');
+        return view('konta.index');
     }
 
     public function dodaj()
     {
-        return view('konta');
+        return view('konta.dodaj');
     }
+
+    public function dodajDoBazy()
+    {
+        return redirect('konta');
+    }
+
 
     public function usun()
     {
-        return view('konta');
+        return view('konta.usun');
     }
 }
