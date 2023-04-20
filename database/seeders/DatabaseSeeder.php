@@ -43,13 +43,6 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('recepcjonistka')
         ]);
 
-        User::factory()->create([
-            'name' => 'Obcy',
-            'last_name'=>"Obcy",
-            'email' => 'obcy@example.com',
-            'password' => bcrypt('obcy')
-        ]);
-
         DB::table('roles')->insert([
             [
                 'role_name' => 'szef'

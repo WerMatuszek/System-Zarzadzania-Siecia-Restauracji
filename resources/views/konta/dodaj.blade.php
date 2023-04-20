@@ -13,6 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+
                             <form method="POST" action="{{ route('konta.dodajDoBazy') }}">
                                 @csrf
 
@@ -24,9 +25,9 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="surname" class="col-md-4 col-form-label text-md-end">{{ __('Nazwisko') }}</label>
+                                    <label for="last_name" class="col-md-4 col-form-label text-md-end">{{ __('Nazwisko') }}</label>
                                     <div class="col-md-6">
-                                        <input id="surname" type="text" class="form-control" name="surname" value="{{ old('surname') }}" required autocomplete="surname" autofocus>
+                                        <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
                                     </div>
                                 </div>
 
