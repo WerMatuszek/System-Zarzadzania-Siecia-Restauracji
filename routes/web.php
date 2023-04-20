@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KontaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,29 +22,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 //zakładki
 Auth::routes();
-Route::get('/home/konta', [App\Http\Controllers\KontaController::class, 'index']);
+Route::get('/konta', [App\Http\Controllers\KontaController::class, 'index']);
+Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj');
+Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
 Auth::routes();
-Route::get('/home/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
+Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
 Auth::routes();
-Route::get('/home/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'index']);
+Route::get('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'index']);
 Auth::routes();
-Route::get('/home/pracownicy', [App\Http\Controllers\PracownicyController::class, 'index']);
+Route::get('/pracownicy', [App\Http\Controllers\PracownicyController::class, 'index']);
 Auth::routes();
-Route::get('/home/raporty', [App\Http\Controllers\RaportyController::class, 'index']);
+Route::get('/raporty', [App\Http\Controllers\RaportyController::class, 'index']);
 Auth::routes();
-Route::get('/home/grafik', [App\Http\Controllers\GrafikController::class, 'index']);
+Route::get('/grafik', [App\Http\Controllers\GrafikController::class, 'index']);
 

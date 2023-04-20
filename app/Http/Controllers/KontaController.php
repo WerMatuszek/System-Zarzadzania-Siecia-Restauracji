@@ -23,6 +23,16 @@ class KontaController extends Controller
      */
     public function index()
     {
-        return "usuwanie, zmiana loginu/hasła, zmiana uprawnień kont";
+        return view('konta');
+    }
+
+    public function dodaj()
+    {
+        return view('konta');
+    }
+
+    public function usun()
+    {
+        return view('konta');
     }
 }
