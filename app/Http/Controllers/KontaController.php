@@ -56,6 +56,7 @@ class KontaController extends Controller
 
     public function usun()
     {
-        return view('konta.usun');
+        $users = User::with('roles')->get();
+        return view('konta.usun')->with('users', $users);
     }
 }
