@@ -46,6 +46,28 @@
                                 </div>
 
                                 <div class="row mb-3">
+                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Hasło') }}</label>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <input id="password" type="password" class="form-control flex-grow-1" name="password" value="{{ Str::random(8) }}" required autocomplete="password" autofocus>
+                                        <button id="passwordBtn" type="button" class="btn btn-secondary ml-3" onclick="togglePassword()">Pokaż</button>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    function togglePassword() {
+                                        var passwordField = document.getElementById("password");
+                                        var passwordBtn = document.getElementById("passwordBtn");
+                                        if (passwordField.type === "password") {
+                                            passwordField.type = "text";
+                                            passwordBtn.innerHTML = "Ukryj";
+                                        } else {
+                                            passwordField.type = "password";
+                                            passwordBtn.innerHTML = "Pokaż";
+                                        }
+                                    }
+                                </script>
+
+                                <div class="row mb-3">
                                     <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Rola') }}</label>
                                     <div class="col-md-6">
                                         <select id="role" name="role" class="form-control" value="{{ old('role') }}">

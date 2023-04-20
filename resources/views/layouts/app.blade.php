@@ -27,12 +27,17 @@
                 @if (auth()->check())
                     <ul class="navbar-nav me-auto">
 
-                        @if(!auth()->user()->roles->contains('role_name', 'pracownik') &&
-                            !auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                        @if(auth()->user()->roles->contains('role_name', 'szef') &&
+                            auth()->user()->roles->contains('role_name', 'kierownik'))
                             <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
-                            <a class="navbar-brand" href="../rezerwacje">Rezerwacje</a>
-                            <a class="navbar-brand" href="../pracownicy">Lista pracowników</a>
                         @endif
+
+                            @if(!auth()->user()->roles->contains('role_name', 'pracownik') &&
+                                !auth()->user()->roles->contains('role_name', 'recepcjonistka'))
+                                <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
+                                <a class="navbar-brand" href="../rezerwacje">Rezerwacje</a>
+                                <a class="navbar-brand" href="../pracownicy">Lista pracowników</a>
+                            @endif
 
                         <a class="navbar-brand" href="../korespondencja">Korespondencja uwag</a>
 
