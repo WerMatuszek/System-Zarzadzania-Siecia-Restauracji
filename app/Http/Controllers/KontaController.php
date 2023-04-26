@@ -32,6 +32,26 @@ class KontaController extends Controller
         return view('konta.index');
     }
 
+    public function getWorkers(){
+        $user = Auth::user();
+
+        if($user->roles->contains('role_name', 'szef')){
+            $users = User::whereDoesntHave('roles', function ($query) {
+                $query->where('role_name', 'szef');
+            })->get();
+        }
+        else{
+            $user_rest = $user->restauracjas->pluck('name')->toArray();
+            $users = User::whereHas('restauracjas', function ($query) use ($user_rest) {
+                $query->whereIn('name', $user_rest);
+            })->whereHas('roles', function ($query) {
+                $query->where('role_name', '!=', 'kierownik');
+            })->get();
+        }
+
+        return $users;
+    }
+
     public function dodaj()
     {
         $rest_names = DB::table('restauracjas')->pluck('name')->toArray();
@@ -74,9 +94,7 @@ class KontaController extends Controller
 
     public function usun()
     {
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
+        $users = $this->getWorkers();
         return view('konta.usun')->with('users', $users);
     }
 

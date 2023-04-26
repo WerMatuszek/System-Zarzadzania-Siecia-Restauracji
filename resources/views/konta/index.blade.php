@@ -16,10 +16,8 @@
                         <ul>
                             <li><a href="{{ route('konta.dodaj') }}">Dodaj pracownika</a></li>
                             <li><a href="{{ route('konta.usun') }}">Usuń pracownika</a></li>
-                            @if(auth()->check() && auth()->user()->roles->contains('role_name', 'szef'))
-                                <li><a href="{{ route('konta.edytuj') }}">Edytuj pracownika</a></li>
-                                <li><a href="{{ route('konta.rola') }}">Zmień rolę pracownika</a></li>
-                            @endif
+                            <li><a href="{{ route('konta.edytuj') }}">Edytuj pracownika</a></li>
+                            <li><a href="{{ route('konta.rola') }}">Zmień rolę pracownika</a></li>
                         </ul>
                     </div>
                 </div>
