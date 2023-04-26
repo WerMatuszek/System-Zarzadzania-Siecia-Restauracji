@@ -22,6 +22,11 @@
                             {{ __('Witaj pracowniku!') }}
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'recepcjonistka'))
                             {{ __('Witaj recepcjonistko!') }}
+                        @elseif(auth()->check() && auth()->user()->roles->contains('role_name','magazynier'))
+                            {{ __('Witaj magazynierze')  }}
+                        @elseif(auth()->check() && auth()->user()->roles->contains('role_name','ksiegowa'))
+                            {{ __('Witaj ksiegowo') }}
+
                         @else
                             {{ __('Niezidentyfikowana rola!') }}
                         @endif

@@ -45,4 +45,6 @@ Auth::routes();
 Route::get('/raporty', [App\Http\Controllers\RaportyController::class, 'index']);
 Auth::routes();
 Route::get('/grafik', [App\Http\Controllers\GrafikController::class, 'index']);
+Auth::routes();
+Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index']);
 
