@@ -33,7 +33,7 @@
                                             {{ $role->role_name }} <br>
                                         @endforeach
                                     </td>
-                                    <td><a class="btn btn-default" onclick="return confirm('Czy jesteś pewny, że chcesz edytować pracownika?')" href="{{route('konta.edytujPracownika', ['id' => $user->id])}}"><i class="fa fa-user"></i></a></td>
+                                    <td><a class="btn btn-default" href="{{route('konta.edytujPracownika', ['id' => $user->id])}}"><i class="fa fa-user"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>

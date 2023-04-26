@@ -91,12 +91,6 @@ class KontaController extends Controller
         return redirect('/konta/usun')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie usunięte.');
     }
 
-    public function edytuj()
-    {
-        $users = User::get();
-        return view('konta.edytuj2')->with('users', $users);
-    }
-
     public function rola()
     {
         $users = User::whereDoesntHave('roles', function ($query) {
@@ -131,6 +125,11 @@ class KontaController extends Controller
         return back()->with('users', $users)->with('roles',$roles)->with('status', 'Rola pracownika została pomyślnie zmieniona.');
     }
 
+    public function edytuj()
+    {
+        $users = User::get();
+        return view('konta.edytuj2')->with('users', $users);
+    }
     public function edytujPracownika()
     {
         $user = Auth::user();

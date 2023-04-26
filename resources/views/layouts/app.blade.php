@@ -29,7 +29,7 @@
 
                         @if(auth()->user()->roles->contains('role_name', 'szef') &&
                             auth()->user()->roles->contains('role_name', 'kierownik'))
-                            <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
+                            <a class="navbar-brand" href={{ url('../konta') }}>Zarządzanie kontami</a>
                         @endif
 
                             @if(!auth()->user()->roles->contains('role_name', 'pracownik') &&
@@ -38,29 +38,29 @@
                                 !auth()->user()->roles->contains('role_name','magazynier'))
 
 
-                                <a class="navbar-brand" href="../konta">Zarządzanie kontami</a>
-                                <a class="navbar-brand" href="../rezerwacje">Rezerwacje</a>
-                                <a class="navbar-brand" href="../pracownicy">Lista pracowników</a>
+                                <a class="navbar-brand" href={{ url('../konta') }}>Zarządzanie kontami</a>
+                                <a class="navbar-brand" href={{ url('../rezerwacje') }}>Rezerwacje</a>
+                                <a class="navbar-brand" href={{ url('../pracownicy') }}>Lista pracowników</a>
                             @endif
 
-                        <a class="navbar-brand" href="../korespondencja">Korespondencja uwag</a>
+                        <a class="navbar-brand" href={{ url('../korespondencja') }}>Korespondencja uwag</a>
 
                         @if(!auth()->user()->roles->contains('role_name', 'kierownik') &&
                             !auth()->user()->roles->contains('role_name', 'pracownik')&&
                             !auth()->user()->roles->contains('role_name', 'magazynier'))
 
-                            <a class="navbar-brand" href="../raporty">Raporty</a>
+                            <a class="navbar-brand" href={{ url('../raporty') }}>Raporty</a>
                         @endif
 
                         @if(auth()->user()->roles->contains('role_name','magazynier'))
-                                <a class="navbar-brand" href="../dostawy">Dostawy</a>
+                                <a class="navbar-brand" href={{ url('../dostawy') }}>Dostawy</a>
                         @endif
 
                         @if(auth()->user()->roles->contains('role_name', 'recepcjonistka'))
-                            <a class="navbar-brand" href="../raporty">Rezerwacje</a>
+                            <a class="navbar-brand" href={{ url('../rezerwacje') }}>Rezerwacje</a>
                         @endif
 
-                        <a class="navbar-brand" href="../grafik">Grafik</a>
+                        <a class="navbar-brand" href={{ url('../grafik') }}>Grafik</a>
 
                     </ul>
                 @endif
