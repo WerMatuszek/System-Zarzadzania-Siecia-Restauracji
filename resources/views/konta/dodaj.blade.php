@@ -81,32 +81,66 @@
                                 <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Rola') }}</label>
                                 <div class="col-md-6">
                                     <select id="role" name="role" class="form-control" value="{{ old('role') }}">
-                                        <option value="pracownik" {{ old('role') == 'pracownik' ? 'selected' : '' }}>Pracownik</option>
+                                        <option value="pracownik" {{ old('role') == 'pracownik' ? 'selected' : '' }}>
+                                            Pracownik
+                                        </option>
                                         @if(auth()->check())
                                             @if(auth()->user()->roles->contains('role_name', 'szef'))
-                                                <option value="kierownik" {{ old('role') == 'kierownik' ? 'selected' : '' }}>Kierownik</option>
+                                                <option
+                                                    value="kierownik" {{ old('role') == 'kierownik' ? 'selected' : '' }}>
+                                                    Kierownik
+                                                </option>
                                             @endif
                                         @endif
-                                        <option value="recepcjonistka" {{ old('role') == 'recepcjonistka' ? 'selected' : '' }}>Recepcjonistka</option>
-                                        <option value="magazynier" {{ old('role') == 'magazynier' ? 'selected' : '' }}>Magazynier</option>
-                                        <option value="ksiegowa" {{ old('role') == 'ksiegowa' ? 'selected' : '' }}>Księgowa</option>
+                                        <option
+                                            value="recepcjonistka" {{ old('role') == 'recepcjonistka' ? 'selected' : '' }}>
+                                            Recepcjonistka
+                                        </option>
+                                        <option value="magazynier" {{ old('role') == 'magazynier' ? 'selected' : '' }}>
+                                            Magazynier
+                                        </option>
+                                        <option value="ksiegowa" {{ old('role') == 'ksiegowa' ? 'selected' : '' }}>
+                                            Księgowa
+                                        </option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="restaurant"
-                                       class="col-md-4 col-form-label text-md-end">{{ __('Restauracja') }}</label>
-                                <div class="col-md-6">
-                                    <select id="restaurant" name="restaurant" class="form-control"
-                                            value="{{ old('restaurant') }}">
-                                        <option value="Żadna" {{ old('restaurant') == 'Żadna' ? 'selected' : '' }}>Żadna</option>
-                                        @foreach($rest_names as $restaurant)
-                                            <option value="{{$restaurant}}" {{ old('restaurant') == $restaurant ? 'selected' : '' }}>{{$restaurant}}</option>
-                                        @endforeach
-                                    </select>
+                            @if(auth()->user()->roles->contains('role_name', 'kierownik'))
+                                @php
+                                    $rest_names_kierownik = auth()->user()->restauracjas->pluck('name')->toArray()
+                                @endphp
+                                <div class="row mb-3">
+                                    <label for="restaurant"
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Restauracja') }}</label>
+                                    <div class="col-md-6">
+                                        <select id="restaurant" name="restaurant" class="form-control"
+                                                value="{{ old('restaurant') }}">
+                                            @foreach($rest_names_kierownik as $restaurant)
+                                                <option
+                                                    value="{{$restaurant}}" {{ old('restaurant') == $restaurant ? 'selected' : '' }}>{{$restaurant}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div class="row mb-3">
+                                    <label for="restaurant"
+                                           class="col-md-4 col-form-label text-md-end">{{ __('Restauracja') }}</label>
+                                    <div class="col-md-6">
+                                        <select id="restaurant" name="restaurant" class="form-control"
+                                                value="{{ old('restaurant') }}">
+                                            <option value="Żadna" {{ old('restaurant') == 'Żadna' ? 'selected' : '' }}>
+                                                Żadna
+                                            </option>
+                                            @foreach($rest_names as $restaurant)
+                                                <option
+                                                    value="{{$restaurant}}" {{ old('restaurant') == $restaurant ? 'selected' : '' }}>{{$restaurant}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">

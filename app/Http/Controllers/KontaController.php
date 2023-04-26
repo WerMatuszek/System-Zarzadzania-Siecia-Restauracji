@@ -154,6 +154,12 @@ class KontaController extends Controller
 
     public function zmienDane(Request $request, int $id)
     {
+        $userExist = User::where('email', $request->input('email'))->first();
+
+        if ($userExist) {
+            return back()->withInput()->with('status', 'Konto o tym adresie email już istnieje.');
+        }
+
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
