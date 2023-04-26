@@ -31,7 +31,6 @@
                                     <td>
                                         @foreach($user->roles as $role)
                                             {{ $role->role_name }} <br>
-                                            @php($role_temp = $role->role_name)
                                         @endforeach
                                     </td>
                                 </tr>
@@ -40,81 +39,21 @@
 
 
 
-
-                            <script>
-                                function role_function() {
-                                    var selectElement = document.getElementById('roles_id');
-                                    var selectedOption= selectElement.options[selectElement.selectedIndex];
-                                    var userId = selectedOption.getAttribute('data-userId');
-                                    //var roleId=selectedOption.value;
-                                    var roleId = selectedOption.getAttribute('data-roleId');
-                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
-                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
-                                    }
-                                }
-                                function role_function_2() {
-                                    var selectElement = document.getElementById('roles_id2');
-                                    var selectedOption= selectElement.options[selectElement.selectedIndex];
-                                    var userId = selectedOption.getAttribute('data-userId');
-                                    //var roleId=selectedOption.value;
-                                    var roleId = selectedOption.getAttribute('data-roleId');
-                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
-                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
-                                    }
-                                }
-
-                                function role_function_3() {
-                                    var selectElement = document.getElementById('roles_id3');
-                                    var selectedOption= selectElement.options[selectElement.selectedIndex];
-                                    var userId = selectedOption.getAttribute('data-userId');
-                                    //var roleId=selectedOption.value;
-                                    var roleId = selectedOption.getAttribute('data-roleId');
-                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
-                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
-                                    }
-                                }
-
-                                function role_function_4() {
-                                    var selectElement = document.getElementById('roles_id4');
-                                    var selectedOption= selectElement.options[selectElement.selectedIndex];
-                                    var userId = selectedOption.getAttribute('data-userId');
-                                    //var roleId=selectedOption.value;
-                                    var roleId = selectedOption.getAttribute('data-roleId');
-
-                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")){
-                                        window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
-                                    }
-                                }
-
-                                function role_function_5() {
-                                    var selectElement = document.getElementById('roles_id5');
-                                    var selectedOption= selectElement.options[selectElement.selectedIndex];
-                                    var userId = selectedOption.getAttribute('data-userId');
-                                    //var roleId=selectedOption.value;
-                                    var roleId = selectedOption.getAttribute('data-roleId');
-                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
-                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
-                                    }
-                                }
-
-                            </script>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center" style=" position: fixed;bottom: 630px;right: 660px; ">
-                <div class="card">
 
-                    <div class="card-body">
                         <table>
                             <tbody>
                                 <tr>
                                     <td>
                                         <select id="roles_id" onchange="role_function()">
+                                            <option value="Wybierz rolę"selected>Wybierz rolę</option>
                                             @foreach($roles as $role=>$value)
-                                                @if($value->role_name !== $role_temp)
-                                                    <option value="{{$role}}" data-userId={{2}} data-roleId={{$value->id}}>
+                                                @if($value->role_name !== "kierownik")
+                                                    <option value="{{"--"}}" data-userId={{2}} data-roleId={{$value->id}}>
                                                         {{$value->role_name}}
                                                     </option>
                                                 @endif
@@ -124,9 +63,10 @@
                                 </tr><tr>
                                     <td>
                                         <select id="roles_id2" onchange="role_function_2()">
+                                            <option value="Wybierz rolę"selected>Wybierz rolę</option>
                                             @foreach($roles as $role=>$value)
-                                                @if($value->role_name !== $role_temp)
-                                                    <option value="{{$role}}" data-userId={{3}} data-roleId={{$value->id}}>
+                                                @if($value->role_name !== "pracownik")
+                                                    <option value="{{"--"}}" data-userId={{3}} data-roleId={{$value->id}}>
                                                         {{$value->role_name}}
                                                     </option>
                                                 @endif
@@ -136,9 +76,10 @@
                                 </tr><tr>
                                     <td>
                                         <select id="roles_id3" onchange="role_function_3()">
+                                            <option value="Wybierz rolę"selected>Wybierz rolę</option>
                                             @foreach($roles as $role=>$value)
-                                                @if($value->role_name !== $role_temp)
-                                                    <option value="{{$role}}" data-userId={{4}} data-roleId={{$value->id}}>
+                                                @if($value->role_name !== "recepcjonistka")
+                                                    <option value="{{"--"}}" data-userId={{4}} data-roleId={{$value->id}}>
                                                         {{$value->role_name}}
                                                     </option>
                                                 @endif
@@ -148,9 +89,10 @@
                                 </tr><tr>
                                     <td>
                                         <select id="roles_id4" onchange="role_function_4()">
+                                            <option value="Wybierz rolę"selected>Wybierz rolę</option>
                                             @foreach($roles as $role=>$value)
-                                                @if($value->role_name !== $role_temp)
-                                                    <option value="{{$role}}" data-userId={{5}} data-roleId={{$value->id}}>
+                                                @if($value->role_name !== "magazynier")
+                                                    <option value="{{"--"}}" data-userId={{5}} data-roleId={{$value->id}}>
                                                         {{$value->role_name}}
                                                     </option>
                                                 @endif
@@ -160,9 +102,10 @@
                                     </tr><tr>
                                     <td>
                                         <select id="roles_id5" onchange="role_function_5()">
+                                            <option value="Wybierz rolę"selected>Wybierz rolę</option>
                                             @foreach($roles as $role=>$value)
-                                                @if($value->role_name !== $role_temp)
-                                                    <option value="{{$role}}" data-userId={{6}} data-roleId={{$value->id}}>
+                                                @if($value->role_name !== "ksiegowa")
+                                                    <option value="pracownik" data-userId={{6}} data-roleId={{$value->id}}>
                                                         {{$value->role_name}}
                                                     </option>
                                                 @endif
@@ -173,16 +116,76 @@
 
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
 
 
+
+
+
+
+        <script>
+            function role_function() {
+                var selectElement = document.getElementById('roles_id');
+                var selectedOption= selectElement.options[selectElement.selectedIndex];
+                var userId = selectedOption.getAttribute('data-userId');
+                var roleId = selectedOption.getAttribute('data-roleId');
+                if(roleId!=null && userId!=null) {
+                    if (confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                    }
+                }
+            }
+            function role_function_2() {
+                var selectElement = document.getElementById('roles_id2');
+                var selectedOption= selectElement.options[selectElement.selectedIndex];
+                var userId = selectedOption.getAttribute('data-userId');
+                var roleId = selectedOption.getAttribute('data-roleId');
+                if(roleId!=null && userId!=null) {
+                    if (confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                    }
+                }
+            }
+
+            function role_function_3() {
+                var selectElement = document.getElementById('roles_id3');
+                var selectedOption= selectElement.options[selectElement.selectedIndex];
+                var userId = selectedOption.getAttribute('data-userId');
+                var roleId = selectedOption.getAttribute('data-roleId');
+                if(roleId!=null && userId!=null) {
+                    if (confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                    }
+                }
+            }
+
+            function role_function_4() {
+                var selectElement = document.getElementById('roles_id4');
+                var selectedOption= selectElement.options[selectElement.selectedIndex];
+                var userId = selectedOption.getAttribute('data-userId');
+                var roleId = selectedOption.getAttribute('data-roleId');
+                if(roleId!=null && userId!=null) {
+                    if (confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                    }
+                }
+            }
+
+            function role_function_5() {
+                var selectElement = document.getElementById('roles_id5');
+                var selectedOption= selectElement.options[selectElement.selectedIndex];
+                var userId = selectedOption.getAttribute('data-userId');
+                var roleId = selectedOption.getAttribute('data-roleId');
+                if(roleId!=null && userId!=null) {
+                    if (confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                    }
+                }
+            }
+
+        </script>
 
 @endsection
 
