@@ -111,9 +111,7 @@ class KontaController extends Controller
 
     public function rola()
     {
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
+        $users = $this->getWorkers();
         $roles = Role::whereDoesntHave('users', function ($query) {
             $query->where('role_name', 'szef');
         })->pluck('role_name')->toArray();
@@ -145,7 +143,7 @@ class KontaController extends Controller
 
     public function edytuj()
     {
-        $users = User::get();
+        $users = $this->getWorkers();
         return view('konta.edytuj2')->with('users', $users);
     }
     public function edytujPracownika(int $id)
