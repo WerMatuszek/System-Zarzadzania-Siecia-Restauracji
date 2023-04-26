@@ -19,9 +19,9 @@
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'kierownik'))
                             @include('welcome.kierownik')
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'pracownik'))
-                            {{ __('Witaj pracowniku!') }}
+                            @include('welcome.pracownik')
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name', 'recepcjonistka'))
-                            {{ __('Witaj recepcjonistko!') }}
+                            @include('welcome.recepcjonistka')
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name','magazynier'))
                             {{ __('Witaj magazynierze')  }}
                         @elseif(auth()->check() && auth()->user()->roles->contains('role_name','ksiegowa'))

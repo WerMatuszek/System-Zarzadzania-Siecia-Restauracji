@@ -28,7 +28,7 @@ Route::get('/konta', [App\Http\Controllers\KontaController::class, 'index']);
 Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj');
 Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
 Route::get('/konta/rola', [KontaController::class, 'rola'])->name('konta.rola');
-Route::get('/konta/zmienRole/{id}/{role_id}', [KontaController::class, 'zmienRole'])->name('konta.zmienRole');
+Route::post('/konta/zmienRole/{id}', [KontaController::class, 'zmienRole'])->name('konta.zmienRole');
 Route::post('/konta/dodajDoBazy', [KontaController::class, 'dodajDoBazy'])->name('konta.dodajDoBazy');
 Route::get('/konta/usunZBazy/{id}', [KontaController::class, 'usunZBazy'])->name('konta.usunZBazy');
 

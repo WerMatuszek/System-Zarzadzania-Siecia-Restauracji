@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Restauracja;
 use App\Models\Role;
-use App\Models\Role_User;
 use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class KontaController extends Controller
 {
@@ -24,7 +25,7 @@ class KontaController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -33,7 +34,8 @@ class KontaController extends Controller
 
     public function dodaj()
     {
-        return view('konta.dodaj');
+        $rest_names = DB::table('restauracjas')->pluck('name')->toArray();
+        return view('konta.dodaj')->with('rest_names', $rest_names);
     }
 
     public function dodajDoBazy(Request $request)
@@ -41,7 +43,17 @@ class KontaController extends Controller
         $userExist = User::where('email', $request->input('email'))->first();
 
         if ($userExist) {
-            return redirect('/konta/dodaj')->with('status', 'Konto o tym adresie email już istnieje.');
+            return back()->withInput()->with('status', 'Konto o tym adresie email już istnieje.');
+        }
+
+        $role = Role::where('role_name', $request->input('role'))->first();
+        $rest_name = $request->input('restaurant');
+
+        if($rest_name != "Żadna" && $role->role_name == "magazynier"){
+            return back()->withInput()->with('status', 'Nie można przypisać magazyniera do konkretnej restauracji.');
+        }
+        if($rest_name == "Żadna" && $role->role_name != "magazynier"){
+            return back()->withInput()->with('status', 'Pracownika wybranej roli należy przypisać do konkretnej restauracji.');
         }
 
         $user = new User;
@@ -51,9 +63,11 @@ class KontaController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
-        $role = Role::where('role_name', $request->input('role'))->first();
-
         $user->roles()->attach($role->id);
+        if($rest_name != "Żadna"){
+            $restaurant = Restauracja::where('name', $rest_name)->first();
+            $user->restauracjas()->attach($restaurant->id);
+        }
 
         return redirect('/konta/dodaj')->with('status', 'Konto pracownika zostało pomyślnie utworzone.');
     }
@@ -65,33 +79,6 @@ class KontaController extends Controller
         })->get();
         return view('konta.usun')->with('users', $users);
     }
-
-    public function rola()
-    {
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
-        //$users->
-        $roles = Role::whereDoesntHave('users', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
-        return view('konta.rola')->with('users', $users)->with('roles',$roles);
-    }
-
-    public function zmienRole(int $id, int $role_id)
-    {
-        $user = User::find($id);
-        $user->roles()->sync($role_id);
-        $user->save();
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
-        $roles = Role::whereDoesntHave('users', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
-        return redirect('/konta/rola')->with('users', $users)->with('status', 'Rola pracownika została pomyślnie zmieniona.')->with('roles',$roles);
-    }
-
 
     public function usunZBazy(int $id)
     {
@@ -108,6 +95,40 @@ class KontaController extends Controller
     {
         $users = User::get();
         return view('konta.edytuj2')->with('users', $users);
+    }
+
+    public function rola()
+    {
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        $roles = Role::whereDoesntHave('users', function ($query) {
+            $query->where('role_name', 'szef');
+        })->pluck('role_name')->toArray();
+
+        return view('konta.rola')->with('users', $users)->with('roles',$roles);
+    }
+
+    public function zmienRole(Request $request, int $id)
+    {
+        $role = Role::where('role_name', $request->new_role)->value('id');
+
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        $roles = Role::whereDoesntHave('users', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+
+        if(!isset($role)){
+            return back()->with('users', $users)->with('roles',$roles)->with('status', 'Wybierz rolę!');
+        }
+
+        $user = User::find($id);
+        $user->roles()->sync($role);
+        $user->save();
+
+        return back()->with('users', $users)->with('roles',$roles)->with('status', 'Rola pracownika została pomyślnie zmieniona.');
     }
 
     public function edytujPracownika()

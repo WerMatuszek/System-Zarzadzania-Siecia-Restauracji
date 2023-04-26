@@ -114,6 +114,14 @@ class DatabaseSeeder extends Seeder
             [
                 'user_id' => 2,
                 'restauracja_id' => 1
+            ],
+            [
+                'user_id' => 3,
+                'restauracja_id' => 1
+            ],
+            [
+                'user_id' => 4,
+                'restauracja_id' => 1
             ]
         ]);
     }
