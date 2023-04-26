@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('konta.dodajDoBazy') }}">
+                        <form method="POST" action="{{ route('konta.zmienDane', ['id' => $user->id]) }}">
                             @csrf
 
                             <div class="row mb-3">
@@ -48,7 +48,7 @@
                             <div class="row mb-3">
                                 <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Hasło') }}</label>
                                 <div class="col-md-6 d-flex align-items-center">
-                                    <input id="password" type="password" class="form-control flex-grow-1" name="password" value="{{ old('password',$user->password) }}" required autocomplete="password" autofocus>
+                                    <input id="password" type="password" class="form-control flex-grow-1" name="password" value="{{ old('password') }}" autocomplete="password" autofocus>
                                     <button id="passwordBtn" type="button" class="btn btn-secondary ml-3" onclick="togglePassword()">Pokaż</button>
                                 </div>
                             </div>
@@ -66,19 +66,6 @@
                                     }
                                 }
                             </script>
-
-                            <div class="row mb-3">
-                                <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Rola') }}</label>
-                                <div class="col-md-6">
-                                    <select id="role" name="role" class="form-control" value="{{ old('role',$user->role) }}">
-                                        <option value="pracownik">Pracownik</option>
-                                        <option value="kierownik">Kierownik</option>
-                                        <option value="recepcjonistka">Recepcjonistka</option>
-                                        <option value="magazynier">Magazynier</option>
-                                        <option value="ksiegowa">Księgowa</option>
-                                    </select>
-                                </div>
-                            </div>
 
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-4">

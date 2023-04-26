@@ -130,14 +130,23 @@ class KontaController extends Controller
         $users = User::get();
         return view('konta.edytuj2')->with('users', $users);
     }
-    public function edytujPracownika()
+    public function edytujPracownika(int $id)
     {
-        $user = Auth::user();
-        //$user = User::find($id);
-        //$user->edit();
-        //$users = User::get();
+        $user = User::find($id);
         return view('konta.edytuj',compact('user'));
-        //return redirect('konta.edytuj')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie edytowane.');
     }
 
+    public function zmienDane(Request $request, int $id)
+    {
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        if(!empty($request->input('password'))){
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+
+        $users = User::get();
+        return back()->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie edytowane.');
+    }
 }

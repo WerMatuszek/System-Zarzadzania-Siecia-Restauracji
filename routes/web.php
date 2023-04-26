@@ -31,10 +31,9 @@ Route::get('/konta/rola', [KontaController::class, 'rola'])->name('konta.rola');
 Route::post('/konta/zmienRole/{id}', [KontaController::class, 'zmienRole'])->name('konta.zmienRole');
 Route::post('/konta/dodajDoBazy', [KontaController::class, 'dodajDoBazy'])->name('konta.dodajDoBazy');
 Route::get('/konta/usunZBazy/{id}', [KontaController::class, 'usunZBazy'])->name('konta.usunZBazy');
-
 Route::get('/konta/edytuj', [KontaController::class, 'edytuj'])->name('konta.edytuj');
-Route::get('/konta/edytuj/pracownik', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
-
+Route::get('/konta/edytujpracownika/{id}', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
+Route::post('/konta/zmienDane/{id}', [KontaController::class, 'zmienDane'])->name('konta.zmienDane');
 
 
 Auth::routes();
