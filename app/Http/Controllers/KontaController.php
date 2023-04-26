@@ -52,6 +52,22 @@ class KontaController extends Controller
         return $users;
     }
 
+    public function getRoles(){
+        $user = Auth::user();
+
+        if($user->roles->contains('role_name', 'szef')){
+            $roles = Role::get()->pluck('role_name')->toArray();
+        }
+        else{
+            $roles = DB::table('roles')
+                ->whereIn('role_name', ['pracownik', 'recepcjonistka'])
+                ->pluck('role_name')
+                ->toArray();
+        }
+
+        return $roles;
+    }
+
     public function dodaj()
     {
         $rest_names = DB::table('restauracjas')->pluck('name')->toArray();
@@ -103,18 +119,14 @@ class KontaController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
+        $users = $this->getWorkers();
         return redirect('/konta/usun')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie usunięte.');
     }
 
     public function rola()
     {
         $users = $this->getWorkers();
-        $roles = Role::whereDoesntHave('users', function ($query) {
-            $query->whereIn('role_name', ['szef', 'kierownik']);
-        })->pluck('role_name')->toArray();
+        $roles = $this->getRoles();
 
         return view('konta.rola')->with('users', $users)->with('roles',$roles);
     }
@@ -123,12 +135,8 @@ class KontaController extends Controller
     {
         $role = Role::where('role_name', $request->new_role)->value('id');
 
-        $users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
-        $roles = Role::whereDoesntHave('users', function ($query) {
-            $query->where('role_name', 'szef');
-        })->get();
+        $users = $this->getWorkers();
+        $roles = $this->getRoles();
 
         if(!isset($role)){
             return back()->with('users', $users)->with('roles',$roles)->with('status', 'Wybierz rolę!');
