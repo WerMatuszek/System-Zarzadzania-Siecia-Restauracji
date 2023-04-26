@@ -72,7 +72,11 @@
                                     <div class="col-md-6">
                                         <select id="role" name="role" class="form-control" value="{{ old('role') }}">
                                             <option value="pracownik">Pracownik</option>
-                                            <option value="kierownik">Kierownik</option>
+                                            @if(auth()->check())
+                                                @if(auth()->user()->roles->contains('role_name', 'szef'))
+                                                    <option value="kierownik">Kierownik</option>
+                                                @endif
+                                            @endif
                                             <option value="recepcjonistka">Recepcjonistka</option>
                                             <option value="magazynier">Magazynier</option>
                                             <option value="ksiegowa">Księgowa</option>

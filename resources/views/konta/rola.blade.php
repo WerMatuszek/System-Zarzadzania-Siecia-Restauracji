@@ -48,8 +48,9 @@
                                     var userId = selectedOption.getAttribute('data-userId');
                                     //var roleId=selectedOption.value;
                                     var roleId = selectedOption.getAttribute('data-roleId');
-
-                                    window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                                    }
                                 }
                                 function role_function_2() {
                                     var selectElement = document.getElementById('roles_id2');
@@ -57,8 +58,9 @@
                                     var userId = selectedOption.getAttribute('data-userId');
                                     //var roleId=selectedOption.value;
                                     var roleId = selectedOption.getAttribute('data-roleId');
-
-                                    window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                                    }
                                 }
 
                                 function role_function_3() {
@@ -67,8 +69,9 @@
                                     var userId = selectedOption.getAttribute('data-userId');
                                     //var roleId=selectedOption.value;
                                     var roleId = selectedOption.getAttribute('data-roleId');
-
-                                    window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                                    }
                                 }
 
                                 function role_function_4() {
@@ -78,7 +81,9 @@
                                     //var roleId=selectedOption.value;
                                     var roleId = selectedOption.getAttribute('data-roleId');
 
-                                    window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")){
+                                        window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    }
                                 }
 
                                 function role_function_5() {
@@ -87,8 +92,9 @@
                                     var userId = selectedOption.getAttribute('data-userId');
                                     //var roleId=selectedOption.value;
                                     var roleId = selectedOption.getAttribute('data-roleId');
-
-                                    window.location.href = '/konta/zmienRole/'+ userId + '/' + roleId;
+                                    if(confirm("czy jesteś pewien, że chcesz zmienić rolę tego pracownika?")) {
+                                        window.location.href = '/konta/zmienRole/' + userId + '/' + roleId;
+                                    }
                                 }
 
                             </script>
