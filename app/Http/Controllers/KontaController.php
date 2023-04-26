@@ -56,7 +56,10 @@ class KontaController extends Controller
         $user = Auth::user();
 
         if($user->roles->contains('role_name', 'szef')){
-            $roles = Role::get()->pluck('role_name')->toArray();
+            $roles = DB::table('roles')
+                ->whereNotIn('role_name', ['szef'])
+                ->pluck('role_name')
+                ->toArray();
         }
         else{
             $roles = DB::table('roles')
