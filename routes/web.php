@@ -29,6 +29,12 @@ Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj
 Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
 Route::post('/konta/dodajDoBazy', [KontaController::class, 'dodajDoBazy'])->name('konta.dodajDoBazy');
 Route::get('/konta/usunZBazy/{id}', [KontaController::class, 'usunZBazy'])->name('konta.usunZBazy');
+
+Route::get('/konta/edytuj', [KontaController::class, 'edytuj'])->name('konta.edytuj');
+Route::get('/konta/edytuj/pracownik', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
+
+
+
 Auth::routes();
 Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
 Auth::routes();

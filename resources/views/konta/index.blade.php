@@ -14,12 +14,20 @@
                             </div>
                         @endif
                         <ul>
-                            <li><a href="{{ route('konta.dodaj') }}">Dodaj pracownika</a></li>
-                            <li><a href="{{ route('konta.usun') }}">Usuń pracownika</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                            <li><a class="btn btn-success" href="{{ route('konta.dodaj') }}">Dodaj pracownika</a></li>
+                            <li><a class="btn btn-danger" href="{{ route('konta.usun') }}">Usuń pracownika</a></li>
+
+                            @if(auth()->check())
+                                @if(auth()->user()->roles->contains('role_name', 'szef'))
+                                    <li><a class="btn btn-info" href="{{ route('konta.edytuj') }}">Edytuj pracownika</a></li>
+                                @endif
+
+
+    @endif
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 @endsection

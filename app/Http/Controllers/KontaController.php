@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Role_User;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class KontaController extends Controller
@@ -75,4 +76,21 @@ class KontaController extends Controller
         })->get();
         return redirect('/konta/usun')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie usunięte.');
     }
+
+    public function edytuj()
+    {
+        $users = User::get();
+        return view('konta.edytuj2')->with('users', $users);
+    }
+
+    public function edytujPracownika()
+    {
+        $user = Auth::user();
+        //$user = User::find($id);
+        //$user->edit();
+        //$users = User::get();
+        return view('konta.edytuj',compact('user'));
+        //return redirect('konta.edytuj')->with('users', $users)->with('status', 'Konto pracownika zostało pomyślnie edytowane.');
+    }
+
 }
