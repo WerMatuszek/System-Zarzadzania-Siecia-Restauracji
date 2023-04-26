@@ -65,6 +65,33 @@ class KontaController extends Controller
         return view('konta.usun')->with('users', $users);
     }
 
+    public function rola()
+    {
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        //$users->
+        $roles = Role::whereDoesntHave('users', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        return view('konta.rola')->with('users', $users)->with('roles',$roles);
+    }
+
+    public function zmienRole(int $id, int $role_id)
+    {
+        $user = User::find($id);
+        $user->roles()->sync($role_id);
+        $user->save();
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        $roles = Role::whereDoesntHave('users', function ($query) {
+            $query->where('role_name', 'szef');
+        })->get();
+        return redirect('/konta/rola')->with('users', $users)->with('status', 'Rola pracownika została pomyślnie zmieniona.')->with('roles',$roles);
+    }
+
+
     public function usunZBazy(int $id)
     {
         $user = User::find($id);
