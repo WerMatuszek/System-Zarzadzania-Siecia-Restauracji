@@ -96,12 +96,15 @@
                                             value="recepcjonistka" {{ old('role') == 'recepcjonistka' ? 'selected' : '' }}>
                                             Recepcjonistka
                                         </option>
-                                        <option value="magazynier" {{ old('role') == 'magazynier' ? 'selected' : '' }}>
-                                            Magazynier
-                                        </option>
-                                        <option value="ksiegowa" {{ old('role') == 'ksiegowa' ? 'selected' : '' }}>
-                                            Księgowa
-                                        </option>
+                                        @if(!auth()->user()->roles->contains('role_name', 'kierownik'))
+                                            <option
+                                                value="magazynier" {{ old('role') == 'magazynier' ? 'selected' : '' }}>
+                                                Magazynier
+                                            </option>
+                                            <option value="ksiegowa" {{ old('role') == 'ksiegowa' ? 'selected' : '' }}>
+                                                Księgowa
+                                            </option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>

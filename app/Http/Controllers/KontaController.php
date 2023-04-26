@@ -113,7 +113,7 @@ class KontaController extends Controller
     {
         $users = $this->getWorkers();
         $roles = Role::whereDoesntHave('users', function ($query) {
-            $query->where('role_name', 'szef');
+            $query->whereIn('role_name', ['szef', 'kierownik']);
         })->pluck('role_name')->toArray();
 
         return view('konta.rola')->with('users', $users)->with('roles',$roles);
