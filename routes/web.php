@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DostawyController;
 use App\Http\Controllers\KontaController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,13 @@ Route::middleware(['role:szef,kierownik'])->group(function () {
     Route::get('/konta/edytuj', [KontaController::class, 'edytuj'])->name('konta.edytuj');
     Route::get('/konta/edytujpracownika/{id}', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
     Route::post('/konta/zmienDane/{id}', [KontaController::class, 'zmienDane'])->name('konta.zmienDane');
+});
+Auth::routes();
+Route::middleware('role_mag')->group(function () {
+    Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index'])->middleware(\App\Http\Middleware\IsMagazynier::class);
+    Route::get('/dostawy/stan', [DostawyController::class, 'stan'])->name('dostawy.stan');
+    Route::get('/dostawy/dodaj', [DostawyController::class, 'dodaj'])->name('dostawy.dodaj');
+    Route::post('/dostawy/wybierz', [DostawyController::class, 'wybierz'])->name('dostawy.wybierz');
 });
 
 

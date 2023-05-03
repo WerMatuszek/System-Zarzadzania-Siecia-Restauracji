@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\IsMagazynier;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -68,6 +69,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // other middleware classes
         'role' => \App\Http\Middleware\IsAdmin::class,
+        'role_mag' => IsMagazynier::class
     ];
 
 }

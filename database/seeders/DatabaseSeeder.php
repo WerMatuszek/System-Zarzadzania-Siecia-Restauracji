@@ -106,7 +106,10 @@ class DatabaseSeeder extends Seeder
 
         DB::table('restauracjas')->insert([
             [
-                'name' => "Mamma Mia!"
+                'name' => "MammaMia!"
+            ],
+            [
+                'name' => 'Pommidoro!'
             ]
         ]);
 
@@ -123,6 +126,52 @@ class DatabaseSeeder extends Seeder
                 'user_id' => 4,
                 'restauracja_id' => 1
             ]
+        ]);
+
+        DB::table('dostawies')->insert([
+            [
+                'name' => 'Pomidor'
+            ],
+            [
+                'name' => 'Mozarella'
+            ],
+            [
+                'name' => 'Mąka'
+            ],
+            [
+                'name' => 'Sól'
+            ],
+            [
+                'name' => 'Pieczarki'
+            ]
+        ]);
+
+        DB::table('restauracja_dostawa')->insert([
+            [
+                'produkt_id' => 2,
+                'restauracja_id' => 1,
+                'ilość' => 5
+            ],
+            [
+                'produkt_id' => 3,
+                'restauracja_id' => 1,
+                'ilość' => 10
+            ],
+            [
+                'produkt_id' => 4,
+                'restauracja_id' => 1,
+                'ilość' => 2
+            ],
+            [
+                'produkt_id' => 2,
+                'restauracja_id' => 2,
+                'ilość' => 15
+            ],
+            [
+                'produkt_id' => 1,
+                'restauracja_id' => 2,
+                'ilość' => 8
+            ],
         ]);
     }
 }
