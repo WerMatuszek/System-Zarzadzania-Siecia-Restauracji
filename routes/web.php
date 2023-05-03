@@ -43,6 +43,9 @@ Route::middleware('role_mag')->group(function () {
     Route::get('/dostawy/stan', [DostawyController::class, 'stan'])->name('dostawy.stan');
     Route::get('/dostawy/dodaj', [DostawyController::class, 'dodaj'])->name('dostawy.dodaj');
     Route::post('/dostawy/wybierz', [DostawyController::class, 'wybierz'])->name('dostawy.wybierz');
+    Route::post('/dostawy/wybierzDodaj', [DostawyController::class, 'wybierzDodaj'])->name('dostawy.wybierzDodaj');
+    Route::get('/dostawy/wybierzDodaj', [DostawyController::class, 'wybierzDodaj'])->name('dostawy.wybierzDodaj');
+    Route::post('dostawy/dodajDoBazy', [DostawyController::class, 'dodajDoBazy'])->name('dostawy.dodajDoBazy');
 });
 
 
