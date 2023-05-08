@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DostawyController;
 use App\Http\Controllers\KontaController;
+use App\Http\Controllers\RezerwacjeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'store'])->name('rezerwacje.store');
+
 //zakładki
 Auth::routes();
 Route::middleware(['role:szef,kierownik'])->group(function () {
@@ -37,6 +40,7 @@ Route::middleware(['role:szef,kierownik'])->group(function () {
     Route::get('/konta/edytujpracownika/{id}', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
     Route::post('/konta/zmienDane/{id}', [KontaController::class, 'zmienDane'])->name('konta.zmienDane');
 });
+
 Auth::routes();
 Route::middleware('role_mag')->group(function () {
     Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index'])->middleware(\App\Http\Middleware\IsMagazynier::class);

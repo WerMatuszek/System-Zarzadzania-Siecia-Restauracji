@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+
+use App\Models\Restauracja;
+use App\Models\Rezerwacje;
+use Illuminate\Support\Facades\DB;
+
 
 class RezerwacjeController extends Controller
 {
@@ -21,8 +27,26 @@ class RezerwacjeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
-        return "Rezerwacje";
+        $restauracjas = DB::table('restauracjas')->pluck('name')->toArray();
+        return view('rezerwacje.szefDodaj')->with('restauracjas', $restauracjas);
+    }
+
+    public function store(Request $request)
+    {
+        $rezerwacje = new Rezerwacje;
+        $rezerwacje->name_res = $request->input('name_res');
+        $rezerwacje->last_name_res = $request->input('last_name_res');
+        $rezerwacje->hour_start = $request->input('hour_start');
+        $rezerwacje->hour_end = $request->input('hour_end');
+        $rezerwacje->table_nr = $request->input('table_nr');
+        $rezerwacje->guest_nr = $request->input('guest_nr');
+        $rezerwacje->date_res = $request->input('date_res');
+        $rezerwacje->restauracja = $request->input('restauracja');
+        $rezerwacje->save();
+
+        return redirect('/rezerwacje')->with('status', 'Rezerwacja dodana pomyślnie!');
     }
 }

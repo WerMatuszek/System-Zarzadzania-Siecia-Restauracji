@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('rezerwacjes', function (Blueprint $table) {
             $table->id();
+            $table->string('name_res');
+            $table->string('last_name_res');
+            $table->unsignedSmallInteger('hour_start');
+            $table->unsignedSmallInteger('hour_end');
+            $table->unsignedTinyInteger('table_nr');
+            $table->unsignedTinyInteger('guest_nr');
+            $table->date('date_res');
+            $table->string('restauracja');
             $table->timestamps();
         });
     }

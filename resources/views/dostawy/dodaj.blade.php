@@ -9,7 +9,7 @@
                         <table>
                             <tbody>
                             <tr>
-                                <td width="30%">{{ __('Przeglądnij stan zaopatrzenia dla')}}</td>
+                                <td width="30%">{{ __('Dodaj stan zaopatrzenia dla')}}</td>
                                 <td width=40%">
                                     <form method="POST"
                                           action="{{ route('dostawy.wybierzDodaj') }}">
