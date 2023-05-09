@@ -40,9 +40,9 @@
 
 
                                 <a class="navbar-brand" href={{ url('../konta') }}>Zarządzanie kontami</a>
-                                <a class="navbar-brand" href={{ url('../rezerwacje') }}>Rezerwacje</a>
                                 <a class="navbar-brand" href={{ url('../pracownicy') }}>Lista pracowników</a>
                             @endif
+                            <a class="navbar-brand" href={{ url('../rezerwacje') }}>Rezerwacje</a>
 
                         <a class="navbar-brand" href={{ url('../korespondencja') }}>Korespondencja uwag</a>
 
@@ -57,9 +57,7 @@
                                 <a class="navbar-brand" href={{ url('../dostawy') }}>Dostawy</a>
                         @endif
 
-                        @if(auth()->user()->roles->contains('role_name', 'recepcjonistka'))
-                            <a class="navbar-brand" href={{ url('../rezerwacje') }}>Rezerwacje</a>
-                        @endif
+
 
                         <a class="navbar-brand" href={{ url('../grafik') }}>Grafik</a>
 

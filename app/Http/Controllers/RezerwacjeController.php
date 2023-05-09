@@ -30,8 +30,21 @@ class RezerwacjeController extends Controller
 
     public function index()
     {
+        //$restauracjas = DB::table('restauracjas')->pluck('name')->toArray();
+        return view('rezerwacje.index');
+    }
+
+    public function dodaj()
+    {
         $restauracjas = DB::table('restauracjas')->pluck('name')->toArray();
         return view('rezerwacje.szefDodaj')->with('restauracjas', $restauracjas);
+    }
+
+    public function lista()
+    {
+        $rezerwacjes = DB::table('rezerwacjes')->get();
+
+        return view('rezerwacje.lista')->with('rezerwacjes', $rezerwacjes);
     }
 
     public function store(Request $request)

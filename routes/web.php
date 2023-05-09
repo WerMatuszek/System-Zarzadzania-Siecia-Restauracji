@@ -30,6 +30,7 @@ Route::post('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 's
 Auth::routes();
 Route::middleware(['role:szef,kierownik'])->group(function () {
     Route::get('/konta', [App\Http\Controllers\KontaController::class, 'index']);
+
     Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj');
     Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
     Route::get('/konta/rola', [KontaController::class, 'rola'])->name('konta.rola');
@@ -39,6 +40,9 @@ Route::middleware(['role:szef,kierownik'])->group(function () {
     Route::get('/konta/edytuj', [KontaController::class, 'edytuj'])->name('konta.edytuj');
     Route::get('/konta/edytujpracownika/{id}', [KontaController::class, 'edytujPracownika'])->name('konta.edytujPracownika');
     Route::post('/konta/zmienDane/{id}', [KontaController::class, 'zmienDane'])->name('konta.zmienDane');
+    Route::get('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'index'])->name('rezerwacje.index');
+    Route::get('/rezerwacje/dodaj', [App\Http\Controllers\RezerwacjeController::class, 'dodaj'])->name('rezerwacje.dodaj');
+    Route::get('/rezerwacje/lista', [App\Http\Controllers\RezerwacjeController::class, 'lista'])->name('rezerwacje.lista');
 });
 
 Auth::routes();
@@ -57,6 +61,7 @@ Auth::routes();
 Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
 Auth::routes();
 Route::get('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'index']);
+
 Auth::routes();
 Route::get('/pracownicy', [App\Http\Controllers\PracownicyController::class, 'index']);
 Auth::routes();
