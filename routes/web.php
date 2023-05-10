@@ -59,8 +59,6 @@ Route::middleware('role_mag')->group(function () {
 
 Auth::routes();
 Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
-Auth::routes();
-Route::get('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 'index']);
 
 Auth::routes();
 Route::get('/pracownicy', [App\Http\Controllers\PracownicyController::class, 'index']);
