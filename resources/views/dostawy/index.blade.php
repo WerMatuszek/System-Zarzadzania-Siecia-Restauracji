@@ -15,8 +15,10 @@
                         @endif
                         <ul>
                             <li><a href="{{ route('dostawy.stan') }}">Stan zaopatrzenia</a></li>
-                            <li><a href="{{ route('dostawy.dodaj') }}">Dodaj zaopatrzenie</a></li>
-                            <li><a href="{{ route('dostawy.usun') }}">Usuń zaopatrzenie</a></li>
+                            @if(auth()->user()->roles->contains('role_name','magazynier'))
+                                <li><a href="{{ route('dostawy.dodaj') }}">Dodaj zaopatrzenie</a></li>
+                                <li><a href="{{ route('dostawy.usun') }}">Usuń zaopatrzenie</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>

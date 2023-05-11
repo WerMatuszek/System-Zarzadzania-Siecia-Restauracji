@@ -17,7 +17,7 @@ class DostawyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role_mag');
+        #$this->middleware('role_mag') || $this->middleware(['role:szef']);
     }
 
     /**

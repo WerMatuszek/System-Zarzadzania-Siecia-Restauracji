@@ -30,7 +30,6 @@ Route::post('/rezerwacje', [App\Http\Controllers\RezerwacjeController::class, 's
 Auth::routes();
 Route::middleware(['role:szef,kierownik'])->group(function () {
     Route::get('/konta', [App\Http\Controllers\KontaController::class, 'index']);
-
     Route::get('/konta/dodaj', [KontaController::class, 'dodaj'])->name('konta.dodaj');
     Route::get('/konta/usun', [KontaController::class, 'usun'])->name('konta.usun');
     Route::get('/konta/rola', [KontaController::class, 'rola'])->name('konta.rola');
@@ -46,12 +45,13 @@ Route::middleware(['role:szef,kierownik'])->group(function () {
 });
 
 Auth::routes();
-Route::middleware('role_mag')->group(function () {
-    Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index'])->middleware(\App\Http\Middleware\IsMagazynier::class);
+Route::middleware('role_mag' )->group(function () {
+    Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index']);
     Route::get('/dostawy/stan', [DostawyController::class, 'stan'])->name('dostawy.stan');
     Route::get('/dostawy/dodaj', [DostawyController::class, 'dodaj'])->name('dostawy.dodaj');
     Route::get('/dostawy/usun', [DostawyController::class, 'usun'])->name('dostawy.usun');
     Route::post('/dostawy/wybierz', [DostawyController::class, 'wybierz'])->name('dostawy.wybierz');
+    Route::get('/dostawy/wybierz', [DostawyController::class, 'wybierz'])->name('dostawy.wybierz');
     Route::post('/dostawy/wybierzDodaj', [DostawyController::class, 'wybierzDodaj'])->name('dostawy.wybierzDodaj');
     Route::get('/dostawy/wybierzDodaj', [DostawyController::class, 'wybierzDodaj'])->name('dostawy.wybierzDodaj');
     Route::post('/dostawy/wybierzUsun', [DostawyController::class, 'wybierzUsun'])->name('dostawy.wybierzUsun');
@@ -60,6 +60,11 @@ Route::middleware('role_mag')->group(function () {
     Route::post('dostawy/usunZBazy', [DostawyController::class, 'usunZBazy'])->name('dostawy.usunZBazy');
 });
 
+Route::middleware(['role:szef'] )->group(function () {
+    Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index']);
+    Route::get('/dostawy/stan', [DostawyController::class, 'stan'])->name('dostawy.stan');
+    Route::post('/dostawy/wybierz', [DostawyController::class, 'wybierz'])->name('dostawy.wybierz');
+});
 
 Auth::routes();
 Route::get('/korespondencja', [App\Http\Controllers\KorespondencjaController::class, 'index']);
@@ -70,6 +75,4 @@ Auth::routes();
 Route::get('/raporty', [App\Http\Controllers\RaportyController::class, 'index']);
 Auth::routes();
 Route::get('/grafik', [App\Http\Controllers\GrafikController::class, 'index']);
-Auth::routes();
-Route::get('/dostawy', [App\Http\Controllers\DostawyController::class, 'index']);
 
