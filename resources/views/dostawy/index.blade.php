@@ -16,6 +16,7 @@
                         <ul>
                             <li><a href="{{ route('dostawy.stan') }}">Stan zaopatrzenia</a></li>
                             <li><a href="{{ route('dostawy.dodaj') }}">Dodaj zaopatrzenie</a></li>
+                            <li><a href="{{ route('dostawy.usun') }}">Usuń zaopatrzenie</a></li>
                         </ul>
                     </div>
                 </div>
