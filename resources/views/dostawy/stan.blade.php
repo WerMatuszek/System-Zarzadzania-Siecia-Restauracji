@@ -18,14 +18,14 @@
                                                 <select class="form-control"
                                                         style="flex: 1; margin-right: 10px; width: 120px" id="wybrana_restauracja"
                                                         name="wybrana_restauracja"
-                                                        {{Auth::user()->roles->contains('role_name', 'kierownik') ? 'disabled' : ''}}>
+                                                        {{Auth::user()->roles->contains('role_name', 'kierownik') || Auth::user()->roles->contains('role_name', 'pracownik') ? 'disabled' : ''}}>
                                                     <option value="Wybierz restaurację">Wybierz restaurację</option>
                                                     @foreach($restauracje as $restauracja)
                                                         <option value={{$restauracja->name}} {{ $wybrana_restauracja == $restauracja->name ? 'selected' : '' }}>
                                                         {{$restauracja->name}}</option>
                                                     @endforeach
                                                 </select>
-                                                <button type="submit" class="btn btn-primary" style="flex: 0 0 auto;" {{Auth::user()->roles->contains('role_name', 'kierownik') ? 'hidden' : ''}} >
+                                                <button type="submit" class="btn btn-primary" style="flex: 0 0 auto;" {{Auth::user()->roles->contains('role_name', 'kierownik') || Auth::user()->roles->contains('role_name', 'pracownik') ? 'hidden' : ''}} >
                                                     <i class="fa-solid fa-repeat"></i>
                                                 </button>
                                             </div>

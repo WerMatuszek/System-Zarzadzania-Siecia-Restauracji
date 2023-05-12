@@ -18,7 +18,10 @@ class HasDostawy
         $user = $request->user();
         if ($user->roles()->pluck('role_name')->contains('magazynier') ||
             $user->roles()->pluck('role_name')->contains('szef') ||
-            $user->roles()->pluck('role_name')->contains('kierownik')) {
+            $user->roles()->pluck('role_name')->contains('kierownik') ||
+            $user->roles()->pluck('role_name')->contains('pracownik'))
+
+        {
             return $next($request);
         }
 

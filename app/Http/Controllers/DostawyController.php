@@ -32,7 +32,7 @@ class DostawyController extends Controller
     public function stan()
     {
         $user = Auth::user();
-        if($user->roles->contains('role_name', 'kierownik'))
+        if($user->roles->contains('role_name', 'kierownik') || Auth::user()->roles->contains('role_name', 'pracownik'))
         {
             $restauracje = $user->restauracjas;
             $wybrana_restauracja = $restauracje->first()->name;
@@ -42,7 +42,6 @@ class DostawyController extends Controller
                 ->where('restauracja_id', '=', $rest_id)
                 ->get()
                 ->sortBy('name');
-            return view('dostawy.stan')->with('restauracje', $restauracje)->with('dostawy', $dostawy)->with('wybrana_restauracja', $wybrana_restauracja);
         }
         else
             $restauracje = DB::table('restauracjas')->get()->sortBy('name');
