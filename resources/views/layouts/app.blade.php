@@ -56,7 +56,8 @@
                         @endif
 
                         @if(auth()->user()->roles->contains('role_name','magazynier') ||
-                            auth()->user()->roles->contains('role_name','szef'))
+                            auth()->user()->roles->contains('role_name','szef') ||
+                            auth()->user()->roles->contains('role_name','kierownik'))
                                 <a class="navbar-brand" href={{ url('../dostawy') }}>Dostawy</a>
                         @endif
 
